@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <None Include="..\..\SnakeGame.uproject" />
+    <Filter Include="Source">
+      <UniqueIdentifier>{F31BBDD1-B3E8-3BCC-9652-680E16935819}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\SnakeGame.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="..\..\Source\SnakeGameEditor.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="..\..\.vsconfig" />
+    <Filter Include="Config">
+      <UniqueIdentifier>{FA535FFB-25E1-3D20-B416-52F9BE21E06E}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Config\DefaultEditor.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEngine.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultGame.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultInput.ini">
+      <Filter>Config</Filter>
+    </None>
+    <Filter Include="Source\SnakeGame">
+      <UniqueIdentifier>{556ADF33-95A1-3DCC-AC26-8E401112CF35}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\SnakeGame\SnakeGame.Build.cs">
+      <Filter>Source\SnakeGame</Filter>
+    </None>
+    <ClCompile Include="..\..\Source\SnakeGame\SnakeGame.cpp">
+      <Filter>Source\SnakeGame</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\SnakeGame\SnakeGame.h">
+      <Filter>Source\SnakeGame</Filter>
+    </ClInclude>
+    <Filter Include="Source\SnakeGame\Private">
+      <UniqueIdentifier>{728E79B4-A489-37A9-8ED4-970B30DED88E}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\SnakeGame\Private\PlayerPawnBase.cpp">
+      <Filter>Source\SnakeGame\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\SnakeGame\Private\SnakeBase.cpp">
+      <Filter>Source\SnakeGame\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\SnakeGame\Private\SnakeElementBase.cpp">
+      <Filter>Source\SnakeGame\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\SnakeGame\Private\SnakeGameGameModeBase.cpp">
+      <Filter>Source\SnakeGame\Private</Filter>
+    </ClCompile>
+    <Filter Include="Source\SnakeGame\Public">
+      <UniqueIdentifier>{9E084E0F-FE0E-3E9D-A1A9-84D736B80980}</UniqueIdentifier>
+    </Filter>
+    <ClInclude Include="..\..\Source\SnakeGame\Public\PlayerPawnBase.h">
+      <Filter>Source\SnakeGame\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\SnakeGame\Public\SnakeBase.h">
+      <Filter>Source\SnakeGame\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\SnakeGame\Public\SnakeElementBase.h">
+      <Filter>Source\SnakeGame\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\SnakeGame\Public\SnakeGameGameModeBase.h">
+      <Filter>Source\SnakeGame\Public</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

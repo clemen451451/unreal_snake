@@ -1,0 +1,8 @@
+{
+	"SourceFiles": [
+		"C:\\Users\\Michael\\Desktop\\Skillbox\\unreal_snake\\SnakeGame\\Source\\SnakeGame\\SnakeGame.Build.cs",
+		"C:\\Users\\Michael\\Desktop\\Skillbox\\unreal_snake\\SnakeGame\\Source\\SnakeGame.Target.cs",
+		"C:\\Users\\Michael\\Desktop\\Skillbox\\unreal_snake\\SnakeGame\\Source\\SnakeGameEditor.Target.cs"
+	],
+	"EngineVersion": "5.3.2"
+}

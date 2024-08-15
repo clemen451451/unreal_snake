@@ -1,7 +1,7 @@
 /SnakeGame/Saved/Logs
 
 /SnakeGame/Binaries/Win64
-/SnakeGame/Intermediate
 /SnakeGame/Saved
 /SnakeGame/.vs
 SnakeGame/.vsconfig
+/SnakeGame/Intermediate/Build/Win64
