@@ -33,6 +33,7 @@ void AFood::Interact(AActor* Interactor, bool bIsHead)
 		auto Snake = Cast<ASnakeBase>(Interactor);
 		if (IsValid(Snake))
 		{
+			this->Destroy();
 			Snake->AddSnakeElement();
 		}
 	}

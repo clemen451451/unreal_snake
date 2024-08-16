@@ -35,14 +35,20 @@ void ASnakeBase::Tick(float DeltaTime)
 
 void ASnakeBase::AddSnakeElement(int ElementsSum)
 {
+	if (!IsValid(SnakeElementClass))
+		return;
+
 	for (int i = 0; i < ElementsSum; ++i)
 	{
 		FVector NewLocation(SnakeElements.Num() * ElementSize, 0, 0);
 		FTransform NewTransform(NewLocation);
 
 		ASnakeElementBase* NewSnakeElem = GetWorld()->SpawnActor<ASnakeElementBase>(SnakeElementClass, NewTransform);
+
 		NewSnakeElem->SnakeOwner = this;
+
 		int32 ElemIndex = SnakeElements.Add(NewSnakeElem);
+
 		if (ElemIndex == 0)
 		{
 			NewSnakeElem->SetFirstElementType();
@@ -71,6 +77,9 @@ void ASnakeBase::Move()
 			break;
 	}
 
+	if (!IsValid(SnakeElementClass))
+		return;
+
 	SnakeElements[0]->ToggleCollision();
 
 	for (int i = SnakeElements.Num() - 1; i > 0; i--)
@@ -93,6 +102,8 @@ void ASnakeBase::SnakeElementOverlap(ASnakeElementBase* OverlappedElement, AActo
 {
 	if (IsValid(OverlappedElement))
 	{
+		UE_LOG(LogTemp, Warning, TEXT("SnakeElementOverlap 1"));
+
 		int32 ElemIndex;
 		SnakeElements.Find(OverlappedElement, ElemIndex);
 		bool isFirst = ElemIndex == 0;
@@ -100,6 +111,8 @@ void ASnakeBase::SnakeElementOverlap(ASnakeElementBase* OverlappedElement, AActo
 
 		if (InteractableInterface)
 		{
+			UE_LOG(LogTemp, Warning, TEXT("SnakeElementOverlap 2"));
+
 			InteractableInterface->Interact(this, isFirst);
 		}
 	}
