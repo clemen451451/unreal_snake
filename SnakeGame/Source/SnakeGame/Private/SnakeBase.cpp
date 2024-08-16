@@ -46,6 +46,7 @@ void ASnakeBase::AddSnakeElement(int ElementsSum)
 		ASnakeElementBase* NewSnakeElem = GetWorld()->SpawnActor<ASnakeElementBase>(SnakeElementClass, NewTransform);
 
 		NewSnakeElem->SnakeOwner = this;
+		NewSnakeElem->SetActorHiddenInGame(true);
 
 		int32 ElemIndex = SnakeElements.Add(NewSnakeElem);
 
@@ -89,7 +90,14 @@ void ASnakeBase::Move()
 
 		if (IsValid(PrevElement))
 		{
+			if(PrevElement->IsHidden())
+				PrevElement->SetActorHiddenInGame(false);
+
+			if(CurrentElement->IsHidden())
+				CurrentElement->SetActorHiddenInGame(false);
+
 			FVector PrevLocation = PrevElement->GetActorLocation();
+
 			CurrentElement->SetActorLocation(PrevLocation);
 		}
 	}
@@ -102,8 +110,6 @@ void ASnakeBase::SnakeElementOverlap(ASnakeElementBase* OverlappedElement, AActo
 {
 	if (IsValid(OverlappedElement))
 	{
-		UE_LOG(LogTemp, Warning, TEXT("SnakeElementOverlap 1"));
-
 		int32 ElemIndex;
 		SnakeElements.Find(OverlappedElement, ElemIndex);
 		bool isFirst = ElemIndex == 0;
@@ -111,8 +117,6 @@ void ASnakeBase::SnakeElementOverlap(ASnakeElementBase* OverlappedElement, AActo
 
 		if (InteractableInterface)
 		{
-			UE_LOG(LogTemp, Warning, TEXT("SnakeElementOverlap 2"));
-
 			InteractableInterface->Interact(this, isFirst);
 		}
 	}
