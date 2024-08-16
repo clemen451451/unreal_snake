@@ -3,6 +3,7 @@
 
 #include "SnakeBase.h"
 #include "SnakeElementBase.h"
+#include "Interactable.h"
 
 // Sets default values
 ASnakeBase::ASnakeBase()
@@ -40,6 +41,7 @@ void ASnakeBase::AddSnakeElement(int ElementsSum)
 		FTransform NewTransform(NewLocation);
 
 		ASnakeElementBase* NewSnakeElem = GetWorld()->SpawnActor<ASnakeElementBase>(SnakeElementClass, NewTransform);
+		NewSnakeElem->SnakeOwner = this;
 		int32 ElemIndex = SnakeElements.Add(NewSnakeElem);
 		if (ElemIndex == 0)
 		{
@@ -69,6 +71,8 @@ void ASnakeBase::Move()
 			break;
 	}
 
+	SnakeElements[0]->ToggleCollision();
+
 	for (int i = SnakeElements.Num() - 1; i > 0; i--)
 	{
 		auto CurrentElement = SnakeElements[i];
@@ -82,5 +86,22 @@ void ASnakeBase::Move()
 	}
 
 	SnakeElements[0]->AddActorWorldOffset(MovementVector);
+	SnakeElements[0]->ToggleCollision();
+}
+
+void ASnakeBase::SnakeElementOverlap(ASnakeElementBase* OverlappedElement, AActor* Other)
+{
+	if (IsValid(OverlappedElement))
+	{
+		int32 ElemIndex;
+		SnakeElements.Find(OverlappedElement, ElemIndex);
+		bool isFirst = ElemIndex == 0;
+		IInteractable* InteractableInterface = Cast<IInteractable>(Other);
+
+		if (InteractableInterface)
+		{
+			InteractableInterface->Interact(this, isFirst);
+		}
+	}
 }
 

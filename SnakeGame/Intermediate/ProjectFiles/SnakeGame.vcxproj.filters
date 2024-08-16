@@ -42,6 +42,12 @@
     <Filter Include="Source\SnakeGame\Private">
       <UniqueIdentifier>{728E79B4-A489-37A9-8ED4-970B30DED88E}</UniqueIdentifier>
     </Filter>
+    <ClCompile Include="..\..\Source\SnakeGame\Private\Food.cpp">
+      <Filter>Source\SnakeGame\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\SnakeGame\Private\Interactable.cpp">
+      <Filter>Source\SnakeGame\Private</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\SnakeGame\Private\PlayerPawnBase.cpp">
       <Filter>Source\SnakeGame\Private</Filter>
     </ClCompile>
@@ -57,6 +63,12 @@
     <Filter Include="Source\SnakeGame\Public">
       <UniqueIdentifier>{9E084E0F-FE0E-3E9D-A1A9-84D736B80980}</UniqueIdentifier>
     </Filter>
+    <ClInclude Include="..\..\Source\SnakeGame\Public\Food.h">
+      <Filter>Source\SnakeGame\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\SnakeGame\Public\Interactable.h">
+      <Filter>Source\SnakeGame\Public</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\SnakeGame\Public\PlayerPawnBase.h">
       <Filter>Source\SnakeGame\Public</Filter>
     </ClInclude>

@@ -3,6 +3,7 @@
 
 #include "SnakeElementBase.h"
 #include "Components/StaticMeshComponent.h"
+#include "SnakeBase.h"
 
 // Sets default values
 ASnakeElementBase::ASnakeElementBase()
@@ -11,6 +12,8 @@ ASnakeElementBase::ASnakeElementBase()
 	PrimaryActorTick.bCanEverTick = true;
 
 	MeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("SnakeMeshComponent"));
+	MeshComponent->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
+	MeshComponent->SetCollisionResponseToAllChannels(ECR_Overlap);
 
 }
 
@@ -18,7 +21,6 @@ ASnakeElementBase::ASnakeElementBase()
 void ASnakeElementBase::BeginPlay()
 {
 	Super::BeginPlay();
-	
 }
 
 // Called every frame
@@ -30,6 +32,36 @@ void ASnakeElementBase::Tick(float DeltaTime)
 
 void ASnakeElementBase::SetFirstElementType_Implementation()
 {
+	MeshComponent->OnComponentBeginOverlap.AddDynamic(this, &ASnakeElementBase::OnOverlapBegin);
+}
+
+void ASnakeElementBase::OnOverlapBegin(UPrimitiveComponent* Comp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+{
+	if (IsValid(SnakeOwner))
+	{
+		SnakeOwner->SnakeElementOverlap(this, OtherActor);
+	}
+}
+
+void ASnakeElementBase::Interact(AActor* Interactor, bool bIsHead)
+{
+	auto Snake = Cast<ASnakeBase>(Interactor);
+	if (IsValid(Snake))
+	{
+		Snake->Destroy();
+	}
+}
+
+void ASnakeElementBase::ToggleCollision()
+{
+	if (MeshComponent->GetCollisionEnabled() == ECollisionEnabled::NoCollision)
+	{
+		MeshComponent->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
+	}
+	else
+	{
+		MeshComponent->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	}
 }
 
 
