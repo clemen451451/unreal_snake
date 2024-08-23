@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "PlayerPawnBase.h"
 #include "GameFramework/Actor.h"
 #include "SnakeBase.generated.h"
 
@@ -40,6 +41,15 @@ public:
 
 	UPROPERTY(EditDefaultsOnly)
 	float MovementSpeed;
+	
+	UPROPERTY(EditDefaultsOnly)
+	float MovementSpeedTail;
+
+	UPROPERTY(EditDefaultsOnly)
+	int32 StartElementsAmount;
+
+	UPROPERTY(BlueprintReadWrite)
+	ASnakeElementBase* SnakeHeadElement;
 
 protected:
 	// Called when the game starts or when spawned
@@ -49,8 +59,8 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	void AddSnakeElement(int ElementsSum = 1);
-	void Move();
+	void AddSnakeElement(int ElementsSum = 1, bool SnakeInit = false);
+	void Move(float DeltaTime);
 
 	UFUNCTION()
 	void SnakeElementOverlap(ASnakeElementBase* OverlappedElement, AActor* Other);

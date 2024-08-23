@@ -4,19 +4,18 @@
 #include "PlayerPawnBase.h"
 #include "Camera/CameraComponent.h"
 #include "SnakeBase.h"
+#include "SnakeElementBase.h"
 #include "Components/InputComponent.h"
+#include "Kismet/KismetMathLibrary.h"
 
-// Sets default values
 APlayerPawnBase::APlayerPawnBase()
 {
- 	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
 	PawnCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("PawnCamera"));
 	RootComponent = PawnCamera;
 }
 
-// Called when the game starts or when spawned
 void APlayerPawnBase::BeginPlay()
 {
 	Super::BeginPlay();
@@ -24,13 +23,13 @@ void APlayerPawnBase::BeginPlay()
 	CreateSnakeActor();
 }
 
-// Called every frame
 void APlayerPawnBase::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+	MoveCamera(DeltaTime);
 }
 
-// Called to bind functionality to input
 void APlayerPawnBase::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
@@ -68,4 +67,20 @@ void APlayerPawnBase::HandlePlayerHorizontalInput(float value)
 	}
 }
 
+void APlayerPawnBase::MoveCamera(float DeltaTime)
+{
+	FVector CurrentLocation(RootComponent->GetComponentTransform().GetLocation());
+	FVector CurrentSnakeLocation(SnakeActor->SnakeHeadElement->GetActorLocation());
+
+	RootComponent->SetWorldLocation
+	(
+		FVector
+		(
+			FMath::FInterpTo(CurrentLocation.X, CurrentSnakeLocation.X, DeltaTime, 0.8f),
+			FMath::FInterpTo(CurrentLocation.Y, CurrentSnakeLocation.Y, DeltaTime, 0.8f), 
+			1350.0f
+		),
+		false
+	);
+}
 

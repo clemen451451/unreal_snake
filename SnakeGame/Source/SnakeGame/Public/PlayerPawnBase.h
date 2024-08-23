@@ -27,6 +27,7 @@ public:
 	UPROPERTY(EditDefaultsOnly)
 	TSubclassOf<ASnakeBase> SnakeActorClass;
 
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -39,11 +40,11 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	void CreateSnakeActor();
+	void MoveCamera(float DeltaTime);
 
 	UFUNCTION()
 	void HandlePlayerVerticalInput(float value);
 
 	UFUNCTION()
 	void HandlePlayerHorizontalInput(float value);
-
 };
