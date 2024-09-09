@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Food.h"
 #include "GameFramework/Pawn.h"
 #include "PlayerPawnBase.generated.h"
 
@@ -27,6 +28,14 @@ public:
 	UPROPERTY(EditDefaultsOnly)
 	TSubclassOf<ASnakeBase> SnakeActorClass;
 
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<AFood> FoodActorClass;
+
+	TArray<FVector> MapPositions;
+
+private:
+	int32 MaxPositions = 359;
+
 
 protected:
 	// Called when the game starts or when spawned
@@ -47,4 +56,9 @@ public:
 
 	UFUNCTION()
 	void HandlePlayerHorizontalInput(float value);
+
+private:
+	UFUNCTION()
+	void GenerateMapPositions();
+	void SpawnElementRandom(FVector Location);
 };
