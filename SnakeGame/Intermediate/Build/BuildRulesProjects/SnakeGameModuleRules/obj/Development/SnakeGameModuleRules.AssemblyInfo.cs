@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SnakeGameModuleRules")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Development")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a219fcfb06a166a321690b93f752b5d458644ecf")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e1848df529ad4140ef7874942dc725647f7a5658")]
 [assembly: System.Reflection.AssemblyProductAttribute("SnakeGameModuleRules")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SnakeGameModuleRules")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

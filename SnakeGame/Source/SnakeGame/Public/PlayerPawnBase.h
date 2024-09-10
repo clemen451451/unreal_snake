@@ -4,11 +4,13 @@
 
 #include "CoreMinimal.h"
 #include "Food.h"
+#include "MapElement.h"
 #include "GameFramework/Pawn.h"
 #include "PlayerPawnBase.generated.h"
 
 class UCameraComponent;
 class ASnakeBase;
+class ASpawnerPawnBase;
 
 UCLASS()
 class SNAKEGAME_API APlayerPawnBase : public APawn
@@ -25,17 +27,20 @@ public:
 	UPROPERTY(BlueprintReadWrite)
 	ASnakeBase* SnakeActor;
 
+	UPROPERTY(BlueprintReadWrite)
+	ASpawnerPawnBase* SpawnerPawn;
+
 	UPROPERTY(EditDefaultsOnly)
 	TSubclassOf<ASnakeBase> SnakeActorClass;
 
 	UPROPERTY(EditDefaultsOnly)
 	TSubclassOf<AFood> FoodActorClass;
 
-	TArray<FVector> MapPositions;
+	TArray<MapElement> MapElements;
 
-private:
 	int32 MaxPositions = 359;
 
+	float SpawnIntervalSize = 250.0f;
 
 protected:
 	// Called when the game starts or when spawned
@@ -57,8 +62,8 @@ public:
 	UFUNCTION()
 	void HandlePlayerHorizontalInput(float value);
 
-private:
-	UFUNCTION()
 	void GenerateMapPositions();
-	void SpawnElementRandom(FVector Location);
+	void SpawnFoods(int32 amount);
+	int32 GetRandomFreePosition();
+	float GetDistance(FVector firstLocation, FVector secondLocation);
 };

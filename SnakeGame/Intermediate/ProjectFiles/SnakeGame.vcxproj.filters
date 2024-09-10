@@ -48,6 +48,9 @@
     <ClCompile Include="..\..\Source\SnakeGame\Private\Interactable.cpp">
       <Filter>Source\SnakeGame\Private</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\SnakeGame\Private\MapElement.cpp">
+      <Filter>Source\SnakeGame\Private</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\SnakeGame\Private\PlayerPawnBase.cpp">
       <Filter>Source\SnakeGame\Private</Filter>
     </ClCompile>
@@ -67,6 +70,9 @@
       <Filter>Source\SnakeGame\Public</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\SnakeGame\Public\Interactable.h">
+      <Filter>Source\SnakeGame\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\SnakeGame\Public\MapElement.h">
       <Filter>Source\SnakeGame\Public</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\SnakeGame\Public\PlayerPawnBase.h">

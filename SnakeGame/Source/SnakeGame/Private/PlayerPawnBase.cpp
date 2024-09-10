@@ -6,6 +6,8 @@
 #include "SnakeBase.h"
 #include "SnakeElementBase.h"
 #include "Food.h"
+#include "MapElement.h"
+#include "SpawnerPawnBase.h"
 #include "Components/InputComponent.h"
 #include "Kismet/KismetMathLibrary.h"
 
@@ -20,9 +22,13 @@ APlayerPawnBase::APlayerPawnBase()
 void APlayerPawnBase::BeginPlay()
 {
 	Super::BeginPlay();
+
+	UE_LOG(LogTemp, Warning, TEXT("APlayerPawnBase::BeginPlay"));
+
 	SetActorRotation(FRotator(-90, 0, 0));
 	CreateSnakeActor();
 	GenerateMapPositions();
+	SpawnFoods(100);
 }
 
 void APlayerPawnBase::Tick(float DeltaTime)
@@ -94,8 +100,6 @@ void APlayerPawnBase::GenerateMapPositions()
 	float MapMinY = 2500.0f;
 	float MapMaxY = -2500.0f;
 
-	float SpawnIntervalSize = 250.0;
-
 	float CurrentX = MapMinX;
 	float CurrentY = MapMinY;
 
@@ -109,20 +113,45 @@ void APlayerPawnBase::GenerateMapPositions()
 			CurrentX = CurrentX - SpawnIntervalSize;
 		}
 
-		MapPositions.Add(FVector(CurrentX, CurrentY, 0));
-	
-		APlayerPawnBase::SpawnElementRandom(MapPositions[i]);
+		MapElements.Add(MapElement(FVector(CurrentX, CurrentY, 0), false));
 	}
 }
 
-void APlayerPawnBase::SpawnElementRandom(FVector Location)
+int32 APlayerPawnBase::GetRandomFreePosition()
 {
-	auto let = GetWorld()->SpawnActor<AFood>(FoodActorClass, Location, FRotator());
+	TArray<int32> freeElements;
+	int32 count = 0;
 
-	if (IsValid(let))
+	for (int i = 0; i < MaxPositions; i++)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("VALID %s"), *let->GetName());
+		if (MapElements[i].bIsUsed == false)
+		{
+			freeElements.Add(i);
+			count++;
+		}
 	}
-	else UE_LOG(LogTemp, Warning, TEXT("NO VALID"));
+
+	auto randomInt = FMath::RandRange(0, count - 1);
+	return freeElements[randomInt];
+}
+
+void APlayerPawnBase::SpawnFoods(int32 amount)
+{
+	for (int i = 0; i < amount; i++)
+	{
+		int32 randomPosition = APlayerPawnBase::GetRandomFreePosition();
+
+		if (APlayerPawnBase::GetDistance(SnakeActor->GetActorLocation(), MapElements[randomPosition].Position) < SpawnIntervalSize)
+			continue;
+
+		MapElements[randomPosition].bIsUsed = true;
+
+		GetWorld()->SpawnActor<AFood>(FoodActorClass, MapElements[randomPosition].Position, FRotator());
+	}
+}
+
+float APlayerPawnBase::GetDistance(FVector firstLocation, FVector secondLocation)
+{
+	return (firstLocation - secondLocation).Size();
 }
 
