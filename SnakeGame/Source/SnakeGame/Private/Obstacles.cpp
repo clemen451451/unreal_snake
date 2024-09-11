@@ -3,23 +3,20 @@
 
 #include "Obstacles.h"
 #include "SnakeBase.h"
+#include "SnakeGameGameModeBase.h"
 
-// Sets default values
 AObstacles::AObstacles()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
 }
 
-// Called when the game starts or when spawned
 void AObstacles::BeginPlay()
 {
 	Super::BeginPlay();
 	
 }
 
-// Called every frame
 void AObstacles::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
@@ -34,6 +31,13 @@ void AObstacles::Interact(AActor* Interactor, bool bIsHead)
 		if (IsValid(Snake))
 		{
 			Snake->Destroy();
+
+			auto GameMode = Cast<ASnakeGameGameModeBase>(GetWorld()->GetAuthGameMode());
+
+			if (IsValid(GameMode))
+			{
+				GameMode->bIsFinish = true;
+			}
 		}
 	}
 }

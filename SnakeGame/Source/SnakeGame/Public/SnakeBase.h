@@ -61,6 +61,7 @@ public:
 
 	void AddSnakeElement(int ElementsSum = 1, bool SnakeInit = false);
 	void AddSnakeSpeed(float Speed);
+	void AddSnakeScore(int Score);
 	void Move(float DeltaTime);
 
 	UFUNCTION()

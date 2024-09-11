@@ -3,12 +3,12 @@
 
 #include "SnakeBase.h"
 #include "SnakeElementBase.h"
+#include "SnakeGameGameModeBase.h"
 #include "Interactable.h"
 
 // Sets default values
 ASnakeBase::ASnakeBase()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
 	StartElementsAmount = 4;
@@ -19,15 +19,12 @@ ASnakeBase::ASnakeBase()
 	SnakeHeadElement = nullptr;
 }
 
-// Called when the game starts or when spawned
 void ASnakeBase::BeginPlay()
 {
 	Super::BeginPlay();
 
 	AddSnakeElement(StartElementsAmount, true);
 }
-
-// Called every frame
 
 void ASnakeBase::Tick(float DeltaTime)
 {
@@ -57,7 +54,7 @@ void ASnakeBase::AddSnakeElement(int ElementsSum, bool SnakeInit)
 		if (StartElementsAmount > ElemIndex)
 			bIsLastElement = false;
 
-		if (ElemIndex == 1 || bIsLastElement)
+		if (ElemIndex == 1) //  || bIsLastElement
 			NewSnakeElem->MeshComponent->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 
 		if(bIsLastElement)
@@ -144,5 +141,15 @@ void ASnakeBase::AddSnakeSpeed(float Speed)
 {
 	MovementSpeed += Speed;
 	MovementSpeedTail += Speed;
+}
+
+void ASnakeBase::AddSnakeScore(int Score)
+{
+	auto GameMode = Cast<ASnakeGameGameModeBase>(GetWorld()->GetAuthGameMode());
+
+	if (IsValid(GameMode))
+	{
+		GameMode->Scores += Score;
+	}
 }
 

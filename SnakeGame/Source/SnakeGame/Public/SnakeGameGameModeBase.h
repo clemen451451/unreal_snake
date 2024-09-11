@@ -14,4 +14,10 @@ class SNAKEGAME_API ASnakeGameGameModeBase : public AGameModeBase
 {
 	GENERATED_BODY()
 	
+public:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Info")
+	int Scores = 0;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Bool Info")
+	bool bIsFinish = false;
 };

@@ -27,7 +27,7 @@ void APlayerPawnBase::BeginPlay()
 	SetActorRotation(FRotator(-90, 0, 0));
 	CreateSnakeActor();
 	GenerateMapPositions();
-	APlayerPawnBase::SpawnObstacles(50);
+	SpawnObstacles(30);
 	SpawnFoods(50);
 }
 
@@ -174,7 +174,7 @@ void APlayerPawnBase::SpawnObstacles(int32 amount)
 	{
 		int32 randomPosition = APlayerPawnBase::GetRandomFreePosition();
 
-		if (APlayerPawnBase::GetDistance(SnakeActor->GetActorLocation(), MapElements[randomPosition].Position) < SpawnIntervalSize)
+		if (APlayerPawnBase::GetDistance(SnakeActor->GetActorLocation(), MapElements[randomPosition].Position) < (SpawnIntervalSize * 2.0f))
 			continue;
 
 		MapElements[randomPosition].bIsUsed = true;

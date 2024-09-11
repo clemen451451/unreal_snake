@@ -28,8 +28,7 @@ void AFoodBread::Tick(float DeltaTime)
 
 int AFoodBread::GetFoodType()
 {
-	UE_LOG(LogTemp, Warning, TEXT("AFoodBread::GetFoodType"));
-	return 222;
+	return 1;
 }
 
 void AFoodBread::Interact(AActor* Interactor, bool bIsHead)
@@ -41,7 +40,7 @@ void AFoodBread::Interact(AActor* Interactor, bool bIsHead)
 		{
 			this->Destroy();
 			Snake->AddSnakeElement();
-			Snake->AddSnakeSpeed(1.0f);
+			Snake->AddSnakeSpeed(0.5f);
 		}
 	}
 }
