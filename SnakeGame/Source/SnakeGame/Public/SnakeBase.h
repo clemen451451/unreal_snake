@@ -60,6 +60,7 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	void AddSnakeElement(int ElementsSum = 1, bool SnakeInit = false);
+	void AddSnakeSpeed(float Speed);
 	void Move(float DeltaTime);
 
 	UFUNCTION()

@@ -140,3 +140,9 @@ void ASnakeBase::SnakeElementOverlap(ASnakeElementBase* OverlappedElement, AActo
 	}
 }
 
+void ASnakeBase::AddSnakeSpeed(float Speed)
+{
+	MovementSpeed += Speed;
+	MovementSpeedTail += Speed;
+}
+

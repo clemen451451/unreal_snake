@@ -3,14 +3,14 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Food.h"
 #include "MapElement.h"
+#include "FoodApple.h"
+#include "FoodBread.h"
 #include "GameFramework/Pawn.h"
 #include "PlayerPawnBase.generated.h"
 
 class UCameraComponent;
 class ASnakeBase;
-class ASpawnerPawnBase;
 
 UCLASS()
 class SNAKEGAME_API APlayerPawnBase : public APawn
@@ -27,20 +27,26 @@ public:
 	UPROPERTY(BlueprintReadWrite)
 	ASnakeBase* SnakeActor;
 
-	UPROPERTY(BlueprintReadWrite)
-	ASpawnerPawnBase* SpawnerPawn;
-
 	UPROPERTY(EditDefaultsOnly)
 	TSubclassOf<ASnakeBase> SnakeActorClass;
 
 	UPROPERTY(EditDefaultsOnly)
-	TSubclassOf<AFood> FoodActorClass;
+	TSubclassOf<AFoodApple> FoodAppleClass;
+
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<AFoodBread> FoodBreadClass;
 
 	TArray<MapElement> MapElements;
+
+	IFood* Food;
 
 	int32 MaxPositions = 359;
 
 	float SpawnIntervalSize = 250.0f;
+
+	FTimerHandle CountdownTimerHandle;
+
+	int32 CountdownTime;
 
 protected:
 	// Called when the game starts or when spawned
@@ -66,4 +72,5 @@ public:
 	void SpawnFoods(int32 amount);
 	int32 GetRandomFreePosition();
 	float GetDistance(FVector firstLocation, FVector secondLocation);
+	void AdvanceTimer();
 };

@@ -42,7 +42,10 @@
     <Filter Include="Source\SnakeGame\Private">
       <UniqueIdentifier>{728E79B4-A489-37A9-8ED4-970B30DED88E}</UniqueIdentifier>
     </Filter>
-    <ClCompile Include="..\..\Source\SnakeGame\Private\Food.cpp">
+    <ClCompile Include="..\..\Source\SnakeGame\Private\FoodApple.cpp">
+      <Filter>Source\SnakeGame\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\SnakeGame\Private\FoodBread.cpp">
       <Filter>Source\SnakeGame\Private</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\SnakeGame\Private\Interactable.cpp">
@@ -66,7 +69,10 @@
     <Filter Include="Source\SnakeGame\Public">
       <UniqueIdentifier>{9E084E0F-FE0E-3E9D-A1A9-84D736B80980}</UniqueIdentifier>
     </Filter>
-    <ClInclude Include="..\..\Source\SnakeGame\Public\Food.h">
+    <ClInclude Include="..\..\Source\SnakeGame\Public\FoodApple.h">
+      <Filter>Source\SnakeGame\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\SnakeGame\Public\FoodBread.h">
       <Filter>Source\SnakeGame\Public</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\SnakeGame\Public\Interactable.h">
@@ -86,6 +92,12 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\SnakeGame\Public\SnakeGameGameModeBase.h">
       <Filter>Source\SnakeGame\Public</Filter>
+    </ClInclude>
+    <Filter Include="Source\SnakeGame\Public\Interfaces">
+      <UniqueIdentifier>{D54B5B81-B378-3382-91D0-39C0AE35DB94}</UniqueIdentifier>
+    </Filter>
+    <ClInclude Include="..\..\Source\SnakeGame\Public\Interfaces\Food.h">
+      <Filter>Source\SnakeGame\Public\Interfaces</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

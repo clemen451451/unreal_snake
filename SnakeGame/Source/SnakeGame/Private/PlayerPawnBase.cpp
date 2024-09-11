@@ -5,9 +5,7 @@
 #include "Camera/CameraComponent.h"
 #include "SnakeBase.h"
 #include "SnakeElementBase.h"
-#include "Food.h"
 #include "MapElement.h"
-#include "SpawnerPawnBase.h"
 #include "Components/InputComponent.h"
 #include "Kismet/KismetMathLibrary.h"
 
@@ -23,12 +21,13 @@ void APlayerPawnBase::BeginPlay()
 {
 	Super::BeginPlay();
 
-	UE_LOG(LogTemp, Warning, TEXT("APlayerPawnBase::BeginPlay"));
+	CountdownTime = 3;
+	GetWorldTimerManager().SetTimer(CountdownTimerHandle, this, &APlayerPawnBase::AdvanceTimer, 1.0f, true);
 
 	SetActorRotation(FRotator(-90, 0, 0));
 	CreateSnakeActor();
 	GenerateMapPositions();
-	SpawnFoods(100);
+	SpawnFoods(50);
 }
 
 void APlayerPawnBase::Tick(float DeltaTime)
@@ -44,6 +43,16 @@ void APlayerPawnBase::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 
 	PlayerInputComponent->BindAxis("Vertical", this, &APlayerPawnBase::HandlePlayerVerticalInput);
 	PlayerInputComponent->BindAxis("Horizontal", this, &APlayerPawnBase::HandlePlayerHorizontalInput);
+}
+
+void APlayerPawnBase::AdvanceTimer()
+{
+	--CountdownTime;
+	if (CountdownTime < 1)
+	{
+		SpawnFoods(2);
+		CountdownTime = 10;
+	}
 }
 
 void APlayerPawnBase::CreateSnakeActor()
@@ -146,7 +155,15 @@ void APlayerPawnBase::SpawnFoods(int32 amount)
 
 		MapElements[randomPosition].bIsUsed = true;
 
-		GetWorld()->SpawnActor<AFood>(FoodActorClass, MapElements[randomPosition].Position, FRotator());
+		auto randomType = FMath::RandRange(0, 3);
+
+		switch (randomType)
+		{
+			case 0: GetWorld()->SpawnActor<AFoodApple>(FoodAppleClass, MapElements[randomPosition].Position, FRotator());
+				break;
+			default: GetWorld()->SpawnActor<AFoodBread>(FoodBreadClass, MapElements[randomPosition].Position, FRotator());
+				break;
+		}
 	}
 }
 
