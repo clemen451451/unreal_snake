@@ -27,6 +27,7 @@ void APlayerPawnBase::BeginPlay()
 	SetActorRotation(FRotator(-90, 0, 0));
 	CreateSnakeActor();
 	GenerateMapPositions();
+	APlayerPawnBase::SpawnObstacles(50);
 	SpawnFoods(50);
 }
 
@@ -164,6 +165,21 @@ void APlayerPawnBase::SpawnFoods(int32 amount)
 			default: GetWorld()->SpawnActor<AFoodBread>(FoodBreadClass, MapElements[randomPosition].Position, FRotator());
 				break;
 		}
+	}
+}
+
+void APlayerPawnBase::SpawnObstacles(int32 amount)
+{
+	for (int i = 0; i < amount; i++)
+	{
+		int32 randomPosition = APlayerPawnBase::GetRandomFreePosition();
+
+		if (APlayerPawnBase::GetDistance(SnakeActor->GetActorLocation(), MapElements[randomPosition].Position) < SpawnIntervalSize)
+			continue;
+
+		MapElements[randomPosition].bIsUsed = true;
+
+		GetWorld()->SpawnActor<AObstacles>(ObstaclesClass, MapElements[randomPosition].Position, FRotator());
 	}
 }
 

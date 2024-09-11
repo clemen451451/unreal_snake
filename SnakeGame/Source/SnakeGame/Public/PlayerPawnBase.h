@@ -6,6 +6,7 @@
 #include "MapElement.h"
 #include "FoodApple.h"
 #include "FoodBread.h"
+#include "Obstacles.h"
 #include "GameFramework/Pawn.h"
 #include "PlayerPawnBase.generated.h"
 
@@ -35,6 +36,9 @@ public:
 
 	UPROPERTY(EditDefaultsOnly)
 	TSubclassOf<AFoodBread> FoodBreadClass;
+
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<AObstacles> ObstaclesClass;
 
 	TArray<MapElement> MapElements;
 
@@ -70,6 +74,7 @@ public:
 
 	void GenerateMapPositions();
 	void SpawnFoods(int32 amount);
+	void SpawnObstacles(int32 amount);
 	int32 GetRandomFreePosition();
 	float GetDistance(FVector firstLocation, FVector secondLocation);
 	void AdvanceTimer();

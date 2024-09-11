@@ -54,6 +54,9 @@
     <ClCompile Include="..\..\Source\SnakeGame\Private\MapElement.cpp">
       <Filter>Source\SnakeGame\Private</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\SnakeGame\Private\Obstacles.cpp">
+      <Filter>Source\SnakeGame\Private</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\SnakeGame\Private\PlayerPawnBase.cpp">
       <Filter>Source\SnakeGame\Private</Filter>
     </ClCompile>
@@ -81,6 +84,9 @@
     <ClInclude Include="..\..\Source\SnakeGame\Public\MapElement.h">
       <Filter>Source\SnakeGame\Public</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\SnakeGame\Public\Obstacles.h">
+      <Filter>Source\SnakeGame\Public</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\SnakeGame\Public\PlayerPawnBase.h">
       <Filter>Source\SnakeGame\Public</Filter>
     </ClInclude>
@@ -97,6 +103,9 @@
       <UniqueIdentifier>{D54B5B81-B378-3382-91D0-39C0AE35DB94}</UniqueIdentifier>
     </Filter>
     <ClInclude Include="..\..\Source\SnakeGame\Public\Interfaces\Food.h">
+      <Filter>Source\SnakeGame\Public\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\SnakeGame\Public\Interfaces\Obstacle.h">
       <Filter>Source\SnakeGame\Public\Interfaces</Filter>
     </ClInclude>
   </ItemGroup>
