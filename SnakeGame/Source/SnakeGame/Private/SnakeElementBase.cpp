@@ -3,6 +3,7 @@
 
 #include "SnakeElementBase.h"
 #include "Components/StaticMeshComponent.h"
+#include "SnakeGameGameModeBase.h"
 #include "SnakeBase.h"
 
 // Sets default values
@@ -49,6 +50,13 @@ void ASnakeElementBase::Interact(AActor* Interactor, bool bIsHead)
 	if (IsValid(Snake))
 	{
 		Snake->Destroy();
+
+		auto GameMode = Cast<ASnakeGameGameModeBase>(GetWorld()->GetAuthGameMode());
+
+		if (IsValid(GameMode))
+		{
+			GameMode->bIsFinish = true;
+		}
 	}
 }
 
